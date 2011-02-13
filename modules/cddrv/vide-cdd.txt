@@ -1,0 +1,163 @@
+=======================================================================
+	A B O U T   C D - R O M   D E V I C E   D R I V E R
+=======================================================================
+
+	To install the CD-ROM device driver, the syntax in CONFIG.SYS
+     is as follows:
+
+     DEVICE=VIDE-CDD.SYS /D:MSCD001 [/P:xxx,yy] [/L:xx]
+
+     where [/P:xxx,yy]
+          specifies the IDE port which is connected to the drive and the
+          interrupt request.
+
+          'xxx' is the base address (hexadecimal notation) of IDE port.
+                xxx = 1f0 : Port 1
+                      170 : Port 2
+                      1e8 : Port 3
+                      168 : Port 4
+
+          'yy' is the interrupt number (decimal notation) of the
+          corresponding IDE port.
+
+	[/L:xx]
+	  specifies the message language. Available options are listed
+	  as below:
+
+		xx = US : English (the default language)
+		     GR : German
+		     FR : French
+		     SP : Spanish
+		     IT : Italian
+		     JP : Japanese
+
+     For example,  when eight drives are installed, the command
+     line in the CONFIG.SYS file could be entered as follows:
+
+     DEVICE=VIDE-CDD.SYS /D:MSCD001 /P:1f0,14 /P:170,15 /P:1e8,12 /P:168,10
+
+     NOTE:
+
+	Our device driver will automatically search the drives for 4 ports
+     up to 8 drives, and the ports are 0x1f0, 0x170, 0x1e8 and 0x168 with
+     interrupt number 14, 15, 12 and 10 as default, respectively. If your
+     IDE ports and their respective interrupt numbers are the same as
+     those mentioned above, you don't have to specify them verbosely.
+
+---------------------------------------------------------------------------
+
+	To enable the CD-ROM drive to read CD-ROM discs using the High
+     Sierra or ISO 9660 format, you not only need to install the CD-ROM
+     device driver, but also need to insert the following line into your
+     AUTOEXEC.BAT file:
+
+     MSCDEX /D:MSCD001
+
+	To have a detail knowledge about the MSCDEX.EXE program, please
+     refer to MS-DOS user manual.
+
+
+=======================================================================
+	O p e r a t i n g    t h e    D r i v e
+=======================================================================
+
+     Starting the Drive
+
+     1.	Press the Eject button. The tray is ejected from the drive.
+     2.	Place the disc in the tray with the disc label side facing up.
+     3.	Press the Eject button or press the tray panel lightly to close
+	the tray. The drive should be in its normal operating position
+	now.
+     4.	Press the Audio Play/Skip track control button to play or skip
+	one track of Audio CD without executing application software.
+
+     NOTES:	1. Do not force the tray to open manually.
+		2. When not using the drive, keep the tray closed to
+		   prevent the dust and dirt contamination.
+		3. Do not press down hard on the tray when loading a
+		   disc, because it could damage the tray and cause
+		   the drive to malfunction.
+		4. Do not insert any foreign objects into disc tray.
+
+
+     Optimizing the Drive
+
+     Although this CD-ROM drive works fine with the default setting of
+     any system BIOS, it takes the advantages of some special settings
+     in modern BIOS.  To fully utilize this CD-ROM drive, PIO mode 4 or
+     DMA mode 2 is recommended for the setting of the system BIOS.  If
+     your system BIOS does not allow you to change the PIO mode, run
+     the CHPIO.EXE in the installation disk.  It will work for most
+     modern systems.
+
+     NOTES:	1. The change made by CHPIO.EXE will not be saved to
+		   BIOS, so you may want to add it in the AUTOEXEC.BAT
+		   file. Or as the system reboots, the BIOS will
+		   automatically reset its PIO mode to the original
+		   settings.
+		2. Some older systems may not work properly under PIO
+		   mode 4.  If such thing happens, reboot your system,
+		   then the BIOS will automatically reset the PIO made
+		   to its original setting.
+
+
+     Examining the Drive
+
+     In the installation disk, a program named DTR.EXE can be used to
+     examine the performance of the CD-ROM drive.  To get the proper
+     performance, the following procedures should be taken:
+
+     1.	Boot your system from DOS. If you use Windows 95, press F8 while
+	booting, then select "Command prompt only" or "Previous version
+	of MS-DOS" of Microsoft Windows 95 Startup Menu.
+     2.	Insert a large capacity (>600MB preferred), single session, pure
+	data CD-ROM disk with no scratch or dust.
+     3.	Run the DTR-EXE in the installation disk.
+
+     This program will test the data transfer rate at various areas of a
+     CD-ROM disk, and plot a curve of the data transfer rate.
+
+     For disks with scratches or dust, the data rechecking and corrections
+     may cause the data transfer rate to drop temporarily.
+
+
+=======================================================================
+	F r e q u e n t l y    A s k e d    Q u e s t i o n
+=======================================================================
+
+Q. Why cannot I do a directory (dir) on a good ISO-9660 format disc
+   on my CD-ROM drive although it is ready?
+A. Your CD-ROM drive might work on PIO mode zero only. When your PC
+   system is configured in a faster IDE interface mode, this CD-ROM
+   drive might get this kind of communication problem. The solution
+   will be that you have to turn down the interface speed between
+   the CD-ROM drive and your PC system through BIOS or interface
+   card setting. After the configuration is changed, you need to
+   reboot the system.
+
+Q. Why is it slow to read files for my CD-ROM. How to get it faster?
+A. The MSCDEX.EXE allocates memory for caching information on the
+   CD-ROM. You can set the /M:<value> to determine how many sector
+   buffers MSCDEX allocates when it installs itself. Typically, each
+   drive should have a minimum 4-5 buffers per drive and the higher
+   this value is, the better the drive performance would be.
+
+Q. I have an enhanced IDE card with two ports, but I cannot install the
+   CD-ROM drive on the secondary port properly.
+A. The secondary port on some enhanced IDE card (eg. CMD0640x) is left
+   un-opened when the PC system is initially powered on. Under such a
+   condition, the CD-ROM device driver will not act stably when this
+   CD-ROM drive installed. To resolve this problem, you can install
+   the device driver bundled with your enhanced IDE card to open the
+   secondary port.
+
+Q. The SKIP button doesn't skip while a 'CD PLAYER' like program is
+   playing.
+A. Based upon the design philosophy of this CD-ROM drive, the application
+   program has a higher priority than the manual pressing buttons so
+   that the interference between "manual pressing button" and
+   "application program" can be avoided. Therefore, during play under
+   application program, the CD-ROM drive will not respond when the
+   "SKIP" button is pressed. Besides, the tray will be opened when the
+   "STOP" button is pressed.
+

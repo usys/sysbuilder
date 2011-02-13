@@ -1,0 +1,34 @@
+@ECHO OFF
+IF !%1==! GOTO END
+IF !%2==! GOTO END
+
+set PRNHEAD=MS-DOS7
+call begin.bat %1\%2
+
+call addpath.bat -b %1\%2\dos
+
+SET BOOTLEVEL=%3
+IF "%BOOTLEVEL%"=="0" GOTO BOOT0
+
+:Step0
+if not exist %1\%2\command.com goto Step1
+call print.bat Set COMSPEC ("%1\%2\command.com")
+set COMSPEC=%1\%2\command.com
+
+:Step1
+call try.bat LoadHigh doslfn %1\%2\dos\doslfn.com
+
+:Step2
+call try.bat LoadHigh smartdrv %1\%2\dos\smartdrv.exe /X
+
+:Step3
+call try.bat LoadHigh doskey %1\%2\dos\doskey.com /INSERT
+
+:Step4
+
+:BOOT0
+
+
+:END
+set BOOTLEVEL=
+set PRNHEAD=

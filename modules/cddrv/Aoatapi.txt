@@ -1,0 +1,157 @@
+
+              README file for ATAPI CD-ROM device driver
+     ===================================================================
+
+     I.   Introduction
+     II.  Requirements
+     III. Installation Procedures
+     IV.  Changing Settings after Installation
+
+     I.  Introduction
+     ================
+     This CD-ROM package comes with an installation utility. This utility
+     installs the necessary CD-ROM software device driver needed by your 
+     CD-ROM drive to interface with your PC system.
+
+     Files
+     -----
+     The drive installation diskette includes the following files:
+
+     README.TXT  -- This user information text file
+     INSTALL.EXE -- CD-ROM installation program
+     AOATAPI.SYS -- CD-ROM device driver
+
+
+
+     II.  Requirements
+     =================
+
+     Hardware Requirements
+     ---------------------
+     1. IBM PC/AT or compatible (80386-base system or higher recommended)
+     2. Minimum VGA graphic display 
+     3. Minimum 2M RAM recommended
+     4. one free IDE socket
+     5. one CD-ROM drive
+
+     Software Requirement
+     --------------------
+     1. Microsoft Windows 3.1 or later
+     2. MS-DOS version 6.0 or later
+     3. MS-DOS CD-Extension (MSCDEX 2.21) or later
+
+
+
+     III. Installation Procedures
+     ============================
+
+     To install CD-ROM device driver, please follow the steps below:
+
+     1. Insert the installation diskette in your system's 3.5-inch floppy
+        disk drive.
+
+     2. Change the directory to that of your floppy disk drive, and type
+        the following at the DOS prompt:
+
+              INSTALL <Enter>
+
+     3. Follow the screen instructions to complete the installation.
+
+     4. Reboot system to activate the driver.
+
+
+     In general, you can just continuously press the Enter key to install
+     the default settings. A directory (default C:\CDROM) containing the
+     CD-ROM driver will be created during installation. Your AUTOEXEC.BAT
+     and CONFIG.SYS files will also be modified to include the following 
+     lines:
+
+     CONFIG.SYS :
+              [common]
+              DEVICE=C:\CDROM\AOATAPI.SYS /D:IDECD000
+              
+
+     AUTOEXEC.BAT :
+              C:\DOS\MSCDEX.EXE /D:IDECD000
+
+
+
+     IV.  Changing Settings after Installation
+     =========================================
+
+     To reconfigure the settings of the CD-ROM driver, use a text editor,
+     such as EDIT.COM, to modify the previous two command lines in CONFIG.SYS
+     and AUTOEXEC.BAT and then restart your computer to activate it.
+
+
+     Changing the CONFIG.SYS file, and enabling DMA function
+     -------------------------------------------------------
+     DEVICE=<path>\AOATAPI.SYS /D:<device_name> [/DMA or /ULT] [/P:xxx,yy]
+
+     The <device_name> is the name MSCDEX will use to find the device
+     driver. The maximum length of <device_name> string is 8 characters.
+
+     Example:
+               DEVICE=C:\CDROM\AOATAPI.SYS /D:IDECD000 /P:1F0,14
+       OR      DEVICE=C:\CDROM\AOATAPI.SYS /D:IDECD000 /DMA /P:1F0,14
+       OR      DEVICE=C:\CDROM\AOATAPI.SYS /D:IDECD000 /ULT /P:1F0,14
+
+     The option "/DMA" enables BUS MASTER function if your mother board 
+     supports this function.
+     The option "/ULT" enables ULTRA DMA function if your mother board 
+     supports this function. 
+    
+
+     ********************************************************************
+     The option "/P:" specifies the I/O port address and IRQ level. 
+     The number xxx in hex specifies the I/O port address (such as 1F0, 
+     170, 1E8, or 168 in HEX), and yy specifies the IRQ level (such as
+     14, 15, 11, or 10 in decimal). 
+     ***  Please do not add /P option if you are not familiar  *** 
+     ***  with I/O port address and IRQ level                  ***
+     ********************************************************************
+
+
+     Changing the AUTOEXEC.BAT file
+     ----------------------------
+     MSCDEX /D:driver [/E] [/K] [/S] [/V] [/L:letter] [/M:number]
+
+     Example:
+               C:\DOS\MSCDEX /D:IDECD001 /L:G /M:10
+
+     For more information, please refer to MS-DOS online help for MSCDEX
+     by typing HELP MSCDEX.
+     
+     SPECIAL NOTE:
+
+     A. How to enable Ultra DMA/33 function on CD-ROM drive In Windows 95
+     operation system.
+
+     1. Firstly, please check if your computer ( or motherboard) supports
+     Ultra DMA/33 function. ( ex. Intel 430TX, 440LX chipset supports Ultra
+     DMA/33).
+
+     2. If your computer ( or motherboard) supports Ultra DMA/33 function,
+     then please enable the UDMA function in BIOS setting.
+
+     3. Please be sure to install the PCI IDE DRIVER (Win95 version) which
+     supporting Ultra DMA/33 function that your computer ( or motherboard)
+     supplier provided. Thus, you can enjoy the feature of Ultra DMA/33
+     function in your CD-ROM drive.
+
+     4. If your computer ( or motherboard) supplier didn't provide the PCI
+     IDE DRIVER (Win95 version) which supporting Ultra DMA/33 function.
+     Please ask your supplier to provide this driver.
+
+     5. Please do not use the DMA function of Win95 internally provided in the
+     computer ( or motherboard) which supporting Ultra DMA/33 function. If you
+     enable the DMA function of Win95 internally provided, it will cause your
+     computer system hang up because Win95 only supports the Bus Master DMA
+     function not Ultra DMA/33 function.
+
+     6. Unfortunately if your computer system hangs up, please restart your
+     computer and go to BIOS setting to disable the UDMA function then start
+     your computer again. Restore your default setting in Win95.
+
+
+     ================================= END =============================

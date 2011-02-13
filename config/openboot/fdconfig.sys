@@ -1,0 +1,44 @@
+!COUNTRY=001,437,SYS\COUNTRY.SYS 
+!SET lang=EN 
+files=40	
+buffers=40
+dosdata=UMB
+dos=high,umb
+lastdrive=z
+break=on
+numlock=off
+fcbs=10
+SWITCHES=/F
+menucolor=7,0
+
+
+MENU     ฬอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออน
+MENU     บ                                                                   บ
+MENU     บ   1. Normal                                                       บ
+MENU     บ                                                                   บ
+MENU     บ   2. With CD Support                                              บ
+MENU     บ                                                                   บ
+MENU     บ   3. With EMM386 Support                                          บ
+MENU     บ                                                                   บ
+MENU     บ   4. With UMBPCI Support                                          บ
+MENU     บ                                                                   บ
+MENU     บ   5. With EMM386,CD Support                                       บ
+MENU     บ                                                                   บ
+MENU     บ   6. With UMBPCI,CD Support                                       บ
+MENU     บ                                                                   บ
+MENU     บ   7. Fail Safe                                                    บ
+MENU     บ                                                                   บ
+MENU     ศอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+MENUDEFAULT=1,10
+
+123456?DEVICE=\bin\himem.sys /testmem:off
+35?DEVICE=\bin\EMM386.EXE
+46?DEVICE=\bin\umbpci.sys
+256?DEVICE=\bin\cddrv1.SYS /D:cd001
+rem 256?DEVICE=\bin\cddrv1.SYS /D:cd002
+256?DEVICE=\bin\cddrv2.SYS /D:cd003
+rem 256?DEVICE=\bin\cddrv2.SYS /D:cd004
+123456?SHELL=\COMMAND.COM \ /E:4096 /F /MSG /P=\AUTOEXEC.BAT
+7?SHELL=\COMMAND.COM \
+
+

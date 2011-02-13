@@ -1,0 +1,7 @@
+build
+temp
+os/
+downloads/
+config/xrdos/xrdos/
+modules/*.lha
+nwdsk/

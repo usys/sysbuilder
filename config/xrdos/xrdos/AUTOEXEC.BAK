@@ -1,0 +1,21 @@
+@echo off
+if not "%FS_PATH%"=="" goto FS_PATH
+if "%PATH%"=="" GOTO NO_PATH
+
+path %PATH%;%XRDOS%\bin
+goto menu
+
+:NO_PATH
+path %XRDOS%\bin
+goto menu
+
+
+:FS_PATH
+if not "%FS_PATH%"=="" call addpath.bat %XRDOS%\bin
+call %XRDOS%\bin\menu.bat>>%tmp%\tips.txt
+
+goto end
+:MENU
+call %XRDOS%\bin\menu.bat
+
+:end

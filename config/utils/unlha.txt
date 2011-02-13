@@ -1,0 +1,2 @@
+c	config\bin\unlha.bat		bin
+c	config\bin\lhe.com		bin

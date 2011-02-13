@@ -1,0 +1,2 @@
+c   config/bin/pathadd.bat      bin
+c   config/bin/pathdel.bat      bin

@@ -1,0 +1,104 @@
+BFD is a command line utility, you can use the following parameters:
+
+BFD usage
+
+BFD, Build Floppy Disk, v1.0.7
+Copyright (c) 2002 Bart Lagerweij. All rights reserved.
+This program is free software. Use and/or distribute it under the terms
+of the NU2 License (see nu2lic.txt or http://www.nu2.nu/license/).
+
+
+Usage: bfd [-o os] [-d] [-i file] [-t type] name [target]
+
+  name    : name of the disk or image to build (see bfd.cfg)
+  target  : target drive or file (default is "a:")
+  -o os   : os to use (default is "md701")
+  -d      : print debug messages
+  -i file : create an image file (optional winimage!)
+  -t type : image type (144 or 288)
+  -n      : don't wait for the user to insert a diskette
+
+Returns environment variable "rv", 0 if succesfull, 1 if error
+
+This program uses the following files (located in the "bin" directory):
+- Cabinet Tool (cabarc.exe) by Microsoft Corp.
+- Bart's choice (bchoice.exe) by Bart Lagerweij (Nu2 license). 
+- Build Floppy Image (bfi.exe) by Bart Lagerweij (Nu2 license). 
+
+
+When you run BFD (with the correct parameters) this is what happens:
+
+    * It checks for some required files like: bfi.exe, bchoice.exe anf cabarc.exe in the "bin" folder. BFD cannot continue without these files.
+    * When first run it show's a notice that you must have a valid windows 98 license.
+    * If no config file (bfd.cfg) exists, a sample file (bfd.sam) will be renamed into bfd.cfg. This will prevent overwriting your bfd.cfg file when you unpack future updates.
+    * The configuration file is processed. And all commands for the given floppy name will be run.
+
+
+Configuration sample file (bfd.sam)
+
+# -------------------------------------------------------------------------
+# Configuration file for bfd.cmd
+#
+# format: <command> <arg1> <arg2> <arg3>
+#
+# Available commands:
+#  n <name>          name
+#  f <arg>           format (quickformat if <arg> is "/q")
+#  b <label>         make bootable (should be right after format!)
+#  i <f>             include other config file <f>
+#  c <f1> <f2>       copy <f1> to <f2>
+#  t <f1> <f2>       (try) copy, when <f1> exists, no warning if fails
+#  d <f1> <f2> <f3>  copy a driver (.cab) file from <f1> to <f2>
+#                    and add driver to pre-built index <f3>
+#  x <dir1> <dir2>   xcopy dir1 to dir2 (incl. subdirs)
+#  m <dir>           make directory
+#  k <f1>            del <f1>
+# -------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+# cdrom boot disk
+# -------------------------------------------------------------------------
+n       cdrom
+f
+b       cdrom
+i       modboot.cfg
+c       cabs\utils.cab level0
+c       cabs\os\%bfd_os%\dos.cab level1
+c       cabs\doskey.cab level1
+c       cabs\mouse.cab level2
+c       cabs\help.cab level2
+c       cabs\cdrom.cab level3
+m       lib
+c       cabs\mscdex.cab lib
+c       cabs\aspi.cab lib
+c       cabs\aspicd.cab lib
+c       cabs\atapicd.cab lib
+c       cabs\eltorito.cab lib
+c       cabs\cdautrun.cab lib
+c       cabs\vc.cab lib
+m       lib\aspi
+c       cabs\drivers\aspi\*.cab lib\aspi
+
+# -------------------------------------------------------------------------
+# network boot disk
+# -------------------------------------------------------------------------
+n       msnet
+f
+b       msnet
+i       modboot.cfg
+c       cabs\utils.cab level0
+c       cabs\os\%bfd_os%\dos.cab level1
+c       cabs\doskey.cab level1
+c       cabs\help.cab level2
+c       cabs\mouse.cab level2
+c       cabs\msnet.cab level3
+m       lib
+c       cabs\msclient.cab lib
+c       cabs\mstcp.cab lib
+c       cabs\msnwlink.cab lib
+c       cabs\vc.cab lib
+m       lib\ndis
+m       etc
+d       cabs\drivers\ndis\*.cab lib\ndis etc\_msnet
+#c       etc\msnet\autoexec.net etc\autoexec.net
+

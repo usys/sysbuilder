@@ -1,0 +1,105 @@
+
+              CD-ROM device driver for ATAPI CD-ROM DRIVE 
+     ===================================================================
+
+     I.   General
+     II.  Environments
+     III. The Procedures of Installation
+     IV.  Changing Settings
+
+     I.  General
+     ===========
+     The CD-ROM packet comes with an installation utility. This installs
+     the nessary CD-ROM drivers needed by your CD-ROM drive to interface
+     with your PC.
+
+     Files
+     -----
+     The drive installation diskette includes the following files:
+
+     README.TXT  -- User's guide
+     INSTALL.EXE -- CD-ROM installation program
+     CDTECH.SYS -- CD-ROM device driver
+     CMNAE2.TXT / CMNAF2.TXT / CMNAG2.TXT / CMNAS2.TXT -- CD-ROM manual
+     UDMA.TXT -- Ultra DMA insturction
+
+
+     II.  Environments
+     =================
+
+     Hardware Requirements
+     ---------------------
+     1. IBM PC/AT or compatible (80386-base system recommended)
+     2. Minimum EGA graphic display (VGA recommended)
+     3. Minimum 2M RAM recommended
+    
+    
+
+
+     Software Requirement
+     --------------------
+     1. Microsoft Windows 3.1 or later
+     2. MS-DOS version 5.0 or later
+     3. MS-DOS CD-Extension (MSCDEX 2.21) or later
+
+
+
+     III. The Procedures of Installation
+     ===================================
+
+     To install CD-ROM device driver, please follow the steps below:
+
+     1. Insert the installation diskette in your system's 3.5-inch floppy
+        disk drive.
+
+     2. Change the directory to that of your floppy disk drive, and type
+        the following at the DOS prompt:
+
+              INSTALL <Enter>
+
+     3. Follow the screen instructions to complete the installation.
+
+     4. Reboot system to activate the driver.
+
+     In general, you can just continually press the Enter key to install
+     the default settings. A directory (default C:\CDROM) containing the
+     CD-ROM drivers is created during installation. Your AUTOEXEC.BAT
+     and CONFIG.SYS files are also modified to include the following lines:
+
+     CONFIG.SYS :
+              DEVICE=C:\CDROM\CDTECH.SYS /D:MSCD001 /UDMA2 /V
+
+     AUTOEXEC.BAT :
+              C:\DOS\MSCDEX.EXE /D:MSCD001 /M:10
+
+
+     IV.  Changing Settings
+     ======================
+
+     To reconfigure the settings of the CD-ROM driver, use a text editor,
+     such as EDIT.COM, to modify the previous two command lines in CONFIG.SYS
+     and AUTOEXEC.BAT and then restart your computer to activate it.
+
+
+     Changing the CONFIG.SYS file
+     ------------------------------
+     DEVICE=<path>\CDTECH.SYS /D:<device_name>
+
+     The <device_name> is the name MSCDEX will use to find the device
+     driver. The maximum length of <device_name> string is 8 characters.
+
+     Example:
+               DEVICE=C:\CDROM\CDTECH.SYS /D:MSCD001 
+
+
+     Changing the AUTOEXEC.BAT file
+     ----------------------------
+     MSCDEX /D:driver [/E] [/K] [/S] [/V] [/L:letter] [/M:number]
+
+     Example:
+               C:\DOS\MSCDEX /D:MSCD001 /M:10
+
+     For more information, you can refer to the MS-DOS online help for MSCDEX
+     by typing HELP MSCDEX.
+
+

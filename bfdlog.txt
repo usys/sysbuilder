@@ -1,0 +1,51 @@
+Change log for BFD v1.0.7
+
+- Small fix when start from a folder with a space.
+- Updated Ms-Dos files with win98se (turned out I was using win98fe). This 
+  should solve problems when dumping a ghost image to a NTFS network share and 
+  the ghost image already exists.
+
+Change log for BFD v1.0.6
+
+- Now also processes cds\*.*\bfd.cfg file. This will enable you to include 
+  a bfd.cfg with your CD files.
+  For an example look at the "corporate modboot 1.x" package found on this page:
+  http://www.nu2.nu/corpmodboot/ file.
+
+Change log for BFD v1.0.5
+
+- Added bin\bfi.exe (new!) for building the floppy images.
+- Changed building images it now always uses bfi.exe (not winimage anymore)
+- Removed bin\ntrawrite.exe, bin\empty144.img, bin\empty288.img no longer 
+  needed.
+- Removed winimage entries from the bcd.sam (sample) file.
+- Improved "d" (copy driver) command to check for required ndis.txt file.
+- Removed 3 second delay before mkbt.exe, not needed anymore with mkbt v1.5
+- Some small changes.
+- Added "it" command to set the "image type"  (e.g. "it 288")
+
+Change log for BFD v1.0.4
+
+- Fixed xcopy problem when running on Windows XP
+
+Change log for BFD v1.0.3
+
+- When using "x dir1 dir2" it was asking file or directory, fixed.
+- Added 4NT check.
+
+Change log for BFD v1.0.2
+
+- When "winimg" set in bfd.cfg file but winimage.exe file not found bfd used 
+  to abort. Changed it to just ignore the setting and use a floppy disk to 
+  create the image.
+- Updated bin\mkbt.exe into version 1.5, check http://www.nu2.nu/mkbt/.
+- When an invalid name is used BFD displays a list of valid names.
+- Some small changes.
+
+Change log for BFD v1.0.1
+
+- Added "-n" parameter (no prompt for floppy media) so a lot of floppy images 
+  can be created unattended (when you don't have winimage or else you would be 
+  using that).
+- Some small cosmetic changes.
+- Using setlocal and endlocal.

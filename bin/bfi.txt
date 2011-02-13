@@ -1,0 +1,24 @@
+Build Floppy Image v1.0, Oct 2002
+Copyright (c) 2002 Bart Lagerweij. All rights reserved.
+This program is free Software; you can redistribute it under the terms of
+the NU2 License (see nu2lic.txt or http://www.nu2.nu/license/).
+
+Creates a FAT12 floppy image from files.
+
+Usage: bfi [-v] [-t=type] [-o=file] [-o=file] [-l=mylabel] [-b=file]
+           -f=file.img path [path ...]
+
+   -v         Verbose mode (talk more)
+   -t=type    Disktype use string "144", "120" or "288" or number:
+              4=720K,6=1440K,7=2880K,8=DMF2048,9=DMF1024,10=1680K
+              0=160K,1=180K,2=320K,3=360K,5=1200K
+              Default is 1.44MB
+   -f=file    Image filename
+   -o=file    Order file, put these file on the image first
+   -l=mylabel Set volume label to "mylabel"
+   -b=file    Install bootsector from "file"
+   path       Input folder(s) to inject files from
+
+This program is created using WinImage SDK from WinImage 6.10
+Copyright (c) 1993-2002 Gilles Vollant
+http://www.winimage.com

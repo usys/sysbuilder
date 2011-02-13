@@ -1,0 +1,4 @@
+m   bin
+c   modules\wbat\bin\wbat.com   bin
+c   modules\wbat\bin\wbat.ini   bin
+c   modules\wbat\bin\w.bat      bin

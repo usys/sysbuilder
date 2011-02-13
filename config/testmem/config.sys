@@ -1,0 +1,58 @@
+[menu]
+menuitem=MS, MS HIMEM.SYS
+menuitem=FD, FREE DOS HIMEM.EXE
+menuitem=FD2, FreeDos FDXMS.SYS
+menuitem=FD3, FreeDos FDXXMS.SYS
+menuitem=J, HimemX.exe
+menuitem=Q, Qhimem.sys
+menuitem=X, XMGR.SYS
+menuitem=O, Other Unknow himem.sys
+menucolor=7,0
+
+[MS]
+device=ms\himem.sys 
+device=ms\emm386.exe ram
+
+[FD]
+device=fd\himem.exe
+device=fd\emm386.exe ram
+
+[FD2]
+device=fd\fdxms.sys
+device=fd\emm386.exe ram
+
+[FD3]
+device=fd\fdxxms.sys
+device=fd\emm386.exe ram
+
+[J]
+device=j\himemx.exe
+device=j\jemm386.exe ram
+
+[Q]
+device=q\qhimem.sys
+device=q\qemm386.sys ram
+
+[X]
+device=x\xmgr.sys /B
+REM device=x\umbpci.sys
+device=ms\emm386.exe ram
+devicehigh=x\xmgr.sys
+
+[O]
+device=o\himem.sys
+device=ms\emm386.exe ram
+
+[COMMON]
+files=40	
+buffers=40
+dos=high,umb
+stacks=9,256
+lastdrive=z
+break=on
+numlock=off
+fcbs=10
+;SWITCHES=/F /K /N /W
+SWITCHES=/F
+SHELL=\command.com /E:4096 /P
+    

@@ -1,0 +1,65 @@
+# -------------------------------------------------------------------------
+# Configuration file for bfd.cmd
+#
+# format: <command> <arg1> <arg2> <arg3>
+#
+# Available commands:
+#  n <name>          name
+#  f <arg>           format (quickformat if <arg> is "/q")
+#  it <type>         floppy type (for image only)
+#  b <label>         make bootable (should be right after format!)
+#  i <f>             include other config file <f>
+#  c <f1> <f2>       copy <f1> to <f2>
+#  t <f1> <f2>       (try) copy, when <f1> exists, no warning if fails
+#  d <f1> <f2> <f3>  copy a driver (.cab) file from <f1> to <f2>
+#                    and add driver to pre-built index <f3>
+#  x <dir1> <dir2>   xcopy dir1 to dir2 (incl. subdirs)
+#  m <dir>           make directory
+# -------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+# cdrom boot disk
+# -------------------------------------------------------------------------
+n       cdrom
+f
+b       cdrom
+i       modboot.cfg
+c       cabs\utils.cab level0
+c       cabs\os\%bfd_os%\dos.cab level1
+c       cabs\doskey.cab level1
+c       cabs\mouse.cab level2
+c       cabs\help.cab level2
+c       cabs\cdrom.cab level3
+m       lib
+c       cabs\mscdex.cab lib
+c       cabs\aspi.cab lib
+c       cabs\aspicd.cab lib
+c       cabs\atapicd.cab lib
+c       cabs\eltorito.cab lib
+c       cabs\cdautrun.cab lib
+c       cabs\vc.cab lib
+m       lib\aspi
+c       cabs\drivers\aspi\*.cab lib\aspi
+
+# -------------------------------------------------------------------------
+# network boot disk
+# -------------------------------------------------------------------------
+n       msnet
+f
+b       msnet
+i       modboot.cfg
+c       cabs\utils.cab level0
+c       cabs\os\%bfd_os%\dos.cab level1
+c       cabs\doskey.cab level1
+c       cabs\help.cab level2
+c       cabs\mouse.cab level2
+c       cabs\msnet.cab level3
+m       lib
+c       cabs\msclient.cab lib
+c       cabs\mstcp.cab lib
+c       cabs\msnwlink.cab lib
+c       cabs\vc.cab lib
+m       lib\ndis
+m       etc
+d       cabs\drivers\ndis\*.cab lib\ndis etc\_msnet
+#c       etc\msnet\autoexec.net etc\autoexec.net

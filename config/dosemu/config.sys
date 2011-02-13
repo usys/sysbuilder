@@ -1,0 +1,57 @@
+[menu]
+menuitem=NORMAL, Normal
+menuitem=CD, With CD Support
+menuitem=EMM386, With EMM386 Support
+menuitem=UMBPCI, With UMBPCI Support
+menuitem=EMMCD, With EMM386,CD Support
+menuitem=UMBCD, With UMBPCI,CD Support
+menuitem=CLEAN, Fail Safe
+menudefault=NORMAL,10
+menucolor=7,0
+
+[FHIMEM]
+device=\bin\ems.sys
+
+[FCD]
+DEVICE=\bin\cdrom.SYS /D:cd001
+
+[EMM386]
+INCLUDE FHIMEM
+;DEVICE=\bin\EMM386.EXE NOEMS I=B000-B7FF
+
+[UMBPCI]
+INCLUDE FHIMEM
+;DEVICE=\bin\umbpci.sys
+
+[cd]
+include FHIMEM
+INCLUDE FCD
+
+[CLEAN]
+;device=\bin\himem.sys /testmem:on
+
+[NORMAL]
+INCLUDE FHIMEM
+
+
+[EMMCD]
+INCLUDE EMM386
+INCLUDE FCD
+
+[UMBCD]
+include UMBPCI
+include FCD
+
+[COMMON]
+files=40	
+buffers=40
+dos=high,umb
+stacks=9,256
+lastdrive=z
+break=on
+numlock=off
+fcbs=10
+;SWITCHES=/F /K /N /W
+SWITCHES=/F
+SHELL=\command.com /E:4096 /P
+    
