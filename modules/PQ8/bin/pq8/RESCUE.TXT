@@ -1,0 +1,61 @@
+RESCUE.TXT
+Running PartitionMagic from Rescue Disks
+
+The rescue disks and PartitionMagic CD contain the necessary 
+files to boot your computer and run the DOS GUI version of 
+PartitionMagic. You can boot from the first rescue disk or the 
+PartitionMagic CD.
+
+The rescue disks or bootable CD will be useful in the following 
+situations:
+
+-If you have hidden the hard disk partition where PartitionMagic 
+is installed and need to get back into PartitionMagic to unhide 
+the partition.
+
+-If you have accidentally converted a partition to FAT32 when your 
+operating system does not support FAT32 and now your computer will 
+not boot.  (Use the rescue disks to convert the partition back 
+to FAT.)
+
+-If other occasions arise when you do not have access to 
+the Windows version of PartitionMagic on the CD or hard disk.
+
+        
+To use the rescue disks:
+------------------------
+
+1. Boot your computer from the first rescue disk or PartitionMagic CD.
+
+2. If running from disks, insert the second rescue disk when prompted.
+
+   PartitionMagic runs automatically.
+
+Although the rescue disks run a DOS version of PartitionMagic, 
+it is a full GUI application and has similar functionality to 
+the Windows executable.
+
+To access online help, insert the second rescue disk, then choose
+General or Index from the Help menu.
+
+For additional information about running PartitionMagic from
+the rescue disks, including how the rescue disk version of
+varies from the Windows version, refer to Chapter 1 of the 
+PartitionMagic user guide (provided in PDF format).
+
+========================================================================
+
+PowerQuest can be reached at:
+
+   Voice: 801-437-8900
+   Web site: www.powerquest.com
+   E-mail: magic@powerquest.com
+
+Copyright 1994-2003 PowerQuest Corporation. All rights reserved. 
+PartitionMagic and its use are subject to a license agreement and
+are also subject to copyright, trademark, patent and/or other 
+laws. Refer to the user guide or www.powerquest.com/legal for 
+additional information about PowerQuest patents. PowerQuest, 
+and PartitionMagic are registered trademarks of PowerQuest 
+Corporation. All other brand and product names are trademarks 
+or registered trademarks of the respective owners.

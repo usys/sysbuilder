@@ -1,6 +1,6 @@
 @echo %DEBUG% off
-SET BFD_CMD_COPY=cp
-SET BFD_CMD_XCOPY=cp -r
+SET BFD_CMD_COPY=copy
+SET BFD_CMD_XCOPY=xcopy /E /I
 
 
 rem -------------------------------------------------------------------------

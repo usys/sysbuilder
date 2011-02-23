@@ -1,0 +1,310 @@
+PowerQuest PartitionInfo -- DOS engine edition.
+Date Generated: 08/08/2008 11:11:57
+
+
+
+****************************  CONFIG.SYS  ****************************
+
+[MENU]
+MENUITEM=1,Boot
+MENUITEM=2,Boot with CD-ROM support
+MENUITEM=VPC,Boot with VPC support
+MENUITEM=3,Safe Mode
+MENUITEM=S,Fail Mode
+MENUDEFAULT=1,5
+
+[VPC]
+device=a:\sys\vmadd386.sys
+include 2
+
+[1]
+REM DEVICE=\sys\QEMM386.SYS RAM
+device=a:\SYS\himem.sys /testmem:off /verbose
+device=a:\dos\emm386.exe
+REM device=A:\DOS\emm386.exe M8 ram=C900-EC00
+REM device=\sys\display.sys con=(ega,437,2)
+device=A:\sys\ansi.sys
+REM install=a:\dos\mode.com con codepage prepare=((850) a:\sys\egax.cpi)
+REM install=a:\dos\mode.com con codepage select=850
+ 
+[2]
+device=a:\SYS\himem.sys /testmem:off /verbose
+REM device=a:\dos\emm386.exe
+REM device=A:\DOS\emm386.exe M8 ram=C900-EC00
+REM device=\sys\display.sys con=(ega,437,2)
+device=A:\sys\ansi.sys
+REM install=a:\dos\mode.com con codepage prepare=((850) a:\sys\egax.cpi)
+REM install=a:\dos\mode.com con codepage select=850
+DEVICEHIGH=A:\SYS\VIDE-CDD.SYS /D:IDE-CD
+ 
+[3]
+device=a:\SYS\himem.sys /testmem:off /verbose
+REM device=a:\dos\emm386.exe
+REM device=A:\DOS\emm386.exe M8 ram=C900-EC00
+ 
+[S]
+ 
+[common]
+REM COUNTRY=001,850,a:\sys\country.sys
+SHELL=A:\COMMAND.COM /P /E:2048
+DOS=HIGH,UMB,AUTO
+NUMLOCK=ON
+FCBSHIGH=4,0
+FILESHIGH=30
+BUFFERSHIGH=30,8
+LASTDRIVEHIGH=32
+STACKSHIGH=9,256
+
+***************************  AUTOEXEC.BAT  ***************************
+
+@ECHO OFF
+SET FS_ROOT=%1
+if "x%FS_ROOT%"=="x" set FS_ROOT=C:
+IF NOT EXIST %FS_ROOT%\etc\init.bat GOTO NO_INIT
+call %FS_ROOT%\etc\init.bat %FS_ROOT% %2 %3 %4 %5 %6 %7 %8 %9
+GOTO END
+
+:NO_ROOT
+echo NO ROOT POINT FOR STARTING IMPORT
+GOTO END
+
+:NO_INIT
+echo INIT SCRIPT NOT EXISTS : %FS_ROOT%\ETC\INIT.BAT
+GOTO END
+
+:END
+
+****************************  END PREPEND  ***************************
+
+
+   =====================================================================
+   Disk 1:  520 Cylinders, 128 Heads, 63 Sectors/Track.
+   The BIOS supports INT 13h extensions for this drive.
+   ========================== Partition Tables =========================
+   Partition        -----Begin----    ------End-----   Start     Num
+   Sector    # Boot  Cyl Head Sect FS  Cyl Head Sect   Sect      Sects
+   --------- - ---- ---- ---- ---- -- ---- ---- ---- --------- ---------
+           0 0    80      0    1    1 0B     519  127   63        63   4193217
+
+    ==============================================================================
+    Disk 0:  2047.5 Megabytes
+    ============================= Partition Information ==========================
+    Volume        Partition                        Partition       Start     Total
+    Letter:Label  Type            Status   Size MB Sector    #    Sector   Sectors
+    ------------- --------------- -------- ------- --------- - --------- ---------
+    *:DOSPARTY        FAT32           Pri,Boot      2047.5             0 0            63   4193217
+
+ ========================================================================
+ Boot Sector for drive C:  (Drive 1,  Starting Sector: 63, Type:  FAT32
+ ========================================================================
+ 1. Jump:                    EB 58 90
+ 2. OEM Name:                 M S W I N 4 . 1
+ 3. Bytes Per Sector:        512
+ 4. Sectors Per Cluster:     2
+ 5. Reserved Sectors:        32
+ 6. Number of FAT's:         2
+ 7. Reserved:                0x0000
+ 8. Reserved:                0x0000
+ 9. Media Descriptor:        0xF8
+ 10. Sectors Per FAT:        0
+ 11. Sectors Per Track:      63  (0x3F)
+ 12. Number of Heads:        128  (0x80)
+ 13. Hidden Sectors:         63  (0x3F)
+ 14. Big Total Sectors:      4193217  (0x3FFBC1)
+ 15. Big Sectors Per FAT:    16254
+ 16. Extended Flags:         0x0000
+ 17. FS Version:             0
+ 18. First Cluster of Root:  3 (0x3)
+ 19. FS Info Sector:         1
+ 20. Backup Boot Sector:     6
+ 21. Reserved:                00 00 00 00 00 00 00 00 00 00 00 00
+ 22. Drive ID:               0x80
+ 23. Reserved for NT:        0x00
+ 24. Extended Boot Sig:      0x29
+ 25. Serial Number:          0x0B0E15DF
+ 26. Volume Name:             D O S P A R T Y
+ 27. File System Type:        F A T 3 2      
+ 28. Boot Signature:         0xAA55
+
+}
+Exiting enStartEngine...  Return value: 0  Time = 0:08
+Reading FAT - 16253 sectors at 32
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 32 used entries.
+ERROR: errno = 1. No such file or directory
+pqFileOpen - File: C:\boot.ini. Used OS I/O. Flags 0x1002. Open failed.
+pqFileOpen: Partition type: b, FS type: f, DriveLetter: C.
+BootIni::Init:  Error 301 opening the file \boot.ini.
+
+
+ntRegGetProductType ... (C)
+ERROR: errno = 1. No such file or directory
+pqFileOpen - File: C:\winnt\system32\config\system. Used OS I/O. Flags 0x2. Open failed.
+pqFileOpen: Partition type: b, FS type: f, DriveLetter: C.
+
+ntRegGetProductType: Unable to determine the product type 2.
+
+pqLogLock (pqhandle == 0) ...
+
+pqLogLock complete (pqRet == 0)
+
+pqLogUnlock (pqhandle == 0) ...
+IsMSDOS7orGreaterRunning: True
+
+pqLogUnlock complete (pqRet == 0)
+
+IsLockable(C:) - pqLogLock succeeded.
+Reading FAT - 16253 sectors at 32
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+GetGeometryLimits: Analyzing cluster chains
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 32 used entries.
+Reading FAT - 16253 sectors at 32
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+ReadDirectory - Begin
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+ReadDirectory - Successful (Directory has 1896 blocks with 30336 entries)
+GetGeometryLimits: Analyzing cluster chains
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 32 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 896 used entries.
+
+pqLogLock (pqhandle == 0) ...
+
+pqLogLock complete (pqRet == 0)
+
+pqLogUnlock (pqhandle == 0) ...
+IsMSDOS7orGreaterRunning: True
+
+pqLogUnlock complete (pqRet == 0)
+
+IsLockable(C:) - pqLogLock succeeded.
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+
+	Begin Batch Execution ...
+
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+	Beginning Execution of batch operation 1 of 2 ...
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+正在转换分区：C:DOSPARTY 
+   （FAT32，主卷，2047.5 MB 在磁盘 1上）
+    转换为类型：FAT
+
+enResize (C:)...
+
+pqLogLock (pqhandle == 0) ...
+
+pqLogLock complete (pqRet == 0)
+
+pqCheckFs (C:)  ...
+Reading FAT - 16253 sectors at 32
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+ReadDirectory - Begin
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+ReadDirectory - Successful (Directory has 1896 blocks with 30336 entries)
+Corrupt FAT_DIR_BLOCKS structure (FAT32 Chain Mismatch)
+A lost cluster chain was found, starting with #470733
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 896 used entries.
+
+pqCheckFs complete (pqRet == 983)
+
+pqLogUnlock (pqhandle == 0) ...
+IsMSDOS7orGreaterRunning: True
+
+pqLogUnlock complete (pqRet == 0)
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 32 used entries.
+
+enResize complete (pqRet == 983)
+
+ExecuteList: Error 983 executing operation 1 of 2
+
+TagBatchFileProcessed ... Error 983 executing operation 1 of 2
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+
+	End Batch Execution (pqRet == 983)
+
+
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+Reading FAT - 16253 sectors at 32
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 32 used entries.
+Reading FAT - 16253 sectors at 32
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+ReadDirectory - Begin
+Creating BLOCK_TABLE with 1000 available entries.
+Creating BLOCK_TABLE with 1000 available entries.
+ReadDirectory - Successful (Directory has 1896 blocks with 30336 entries)
+GetGeometryLimits: Analyzing cluster chains
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 32 used entries.
+Destroying BLOCK_TABLE with 1000 used entries.
+Destroying BLOCK_TABLE with 896 used entries.
+
+pqLogLock (pqhandle == 0) ...
+
+pqLogLock complete (pqRet == 0)
+
+pqLogUnlock (pqhandle == 0) ...
+IsMSDOS7orGreaterRunning: True
+
+pqLogUnlock complete (pqRet == 0)
+
+IsLockable(C:) - pqLogLock succeeded.
+VDrive::CreatePartition. . .begin
+Creating an extended partition.
+VDrive::CreatePartition. . .begin
+Initializing batch operation
+Changing freespace partition.
+Assigning drive letter.
+Updating extended space.
+Adding freespace partitions - deleting existing freespace partitions.
+Resetting legal operation flags.
+Creating the batch operation.
+VDrive::CreatePartition. . .end
+Extended partition created.
+Initializing batch operation
+Changing freespace partition.
+Assigning drive letter.
+Updating extended space.
+Adding freespace partitions - deleting existing freespace partitions.
+Resetting legal operation flags.
+Creating the batch operation.
+VDrive::CreatePartition. . .end
+Entering enStopEngine(...)  ID:193  File:Engine.cpp  Line:338
+{
+ DbgMgr->Uninit

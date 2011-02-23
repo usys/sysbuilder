@@ -1,3 +1,3 @@
-i   config/utils/wbat.txt
-c   config/bin/should.bat       bin
-c   config/bin/ask.bat          bin
+i   config\utils\wbat.txt
+c   config\bin\should.bat       bin
+c   config\bin\ask.bat          bin
